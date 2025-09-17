@@ -727,12 +727,11 @@ BEGIN
 			MENUITEM "打开文件、文件夹、快捷方式等(&O)",	CMD_OPEN_PATH_OR_LINK
 			MENUITEM "打开所在文件夹(&F)",			CMD_OPEN_CONTAINING_FOLDER
 			MENUITEM SEPARATOR
-			MENUITEM "使用 Google 搜索(&G)",		CMD_ONLINE_SEARCH_GOOGLE
-			MENUITEM "使用 Bing 搜索(&B)",			CMD_ONLINE_SEARCH_BING
-			MENUITEM "在维基百科中搜索(&W)",		CMD_ONLINE_SEARCH_WIKI
-			MENUITEM SEPARATOR
-			MENUITEM "自定义动作 &1\tCtrl+Shift+1",	CMD_CUSTOM_ACTION1
-			MENUITEM "自定义动作 &2\tCtrl+Shift+2",	CMD_CUSTOM_ACTION2
+			MENUITEM "谷歌(&G)",		CMD_ONLINE_SEARCH_GOOGLE
+			MENUITEM "百度(&B)",			CMD_ONLINE_SEARCH_BING
+			MENUITEM "解释(&W)",		CMD_ONLINE_SEARCH_WIKI
+			MENUITEM "有道 &1\tCtrl+Shift+1",	CMD_CUSTOM_ACTION1
+			MENUITEM "自设 &2\tCtrl+Shift+2",	CMD_CUSTOM_ACTION2
 		END
 		POPUP "&Base64"
 		BEGIN
@@ -784,19 +783,14 @@ IDR_POPUPMENU MENU
 BEGIN
 	POPUP "+"
 	BEGIN
-		MENUITEM "撤销(&U)",						IDM_EDIT_UNDO
-		MENUITEM "重做(&R)",						IDM_EDIT_REDO
+        MENUITEM "定位(&L)",						IDM_FILE_OPEN_CONTAINING_FOLDER
+		MENUITEM "跳转(&O)",						CMD_OPEN_PATH_OR_LINK
 		MENUITEM SEPARATOR
-		MENUITEM "剪切(&T)",						IDM_EDIT_CUT
-		MENUITEM "复制(&C)",						IDM_EDIT_COPY
-		MENUITEM "粘贴(&P)",						IDM_EDIT_PASTE
-		MENUITEM "删除(&D)",						IDM_EDIT_DELETE
-		MENUITEM SEPARATOR
-		MENUITEM "全选(&A)",						IDM_EDIT_SELECTALL
-		MENUITEM SEPARATOR
-		MENUITEM "切换折叠(&F)",					IDM_VIEW_FOLD_CURRENT_BLOCK
-		MENUITEM SEPARATOR
-		MENUITEM "打开(&O)",						CMD_OPEN_PATH_OR_LINK
+		MENUITEM "谷歌(&G)",						CMD_ONLINE_SEARCH_GOOGLE
+        MENUITEM "百度(&B)",						CMD_ONLINE_SEARCH_BING
+		MENUITEM "解释(&E)",						CMD_ONLINE_SEARCH_WIKI
+		MENUITEM "有道(&Y)",						CMD_CUSTOM_ACTION1
+		MENUITEM "自设(&Z)",						CMD_CUSTOM_ACTION2
 	END
 	POPUP "+"
 	BEGIN
@@ -920,7 +914,7 @@ BEGIN
     "P",            CMD_DEFAULTWINPOS,          VIRTKEY, SHIFT, CONTROL, NOINVERT
     "Q",            IDM_EDIT_ENCLOSESELECTION,  VIRTKEY, ALT, NOINVERT
     "Q",            IDM_EDIT_STREAMCOMMENT,     VIRTKEY, CONTROL, NOINVERT
-    "R",            IDM_FILE_RUN,               VIRTKEY, CONTROL, NOINVERT
+    "R",            IDM_EDIT_REPLACE,           VIRTKEY, CONTROL, NOINVERT
     "R",            IDM_EDIT_REMOVEBLANKLINES,  VIRTKEY, ALT, NOINVERT
     "R",            IDM_EDIT_UNESCAPECCHARS,    VIRTKEY, CONTROL, ALT, NOINVERT
     "R",            IDM_EDIT_URLDECODE,         VIRTKEY, SHIFT, CONTROL, NOINVERT
@@ -1111,7 +1105,7 @@ BEGIN
     AUTOCHECKBOX    "为匹配的行添加书签(&K)",IDC_FINDALLBOOKMARK,132,73,90,10,WS_TABSTOP
     AUTOCHECKBOX    "使用 Boost 正则表达式",IDC_FIND_CXXREGEX,132,85,90,10,WS_TABSTOP
     AUTOCHECKBOX    "使用等宽字体(&M)",IDC_USEMONOSPACEDFONT,132,97,90,10,WS_TABSTOP
-    CONTROL         "<a>转至替换(Ctrl+H)</a>",IDC_TOGGLEFINDREPLACE, "SysLink",WS_TABSTOP,140,109,80,10
+    CONTROL         "<a>转至替换(Ctrl+R)</a>",IDC_TOGGLEFINDREPLACE, "SysLink",WS_TABSTOP,140,109,80,10
     CONTROL         "<a>保存位置</a>",IDC_SAVEPOSITION,"SysLink",WS_TABSTOP,223,97,60,10
     CONTROL         "<a>重置位置</a>",IDC_RESETPOSITION,"SysLink",WS_TABSTOP,223,108,60,10
     SCROLLBAR       IDC_RESIZEGRIP2,230,108,10,10
@@ -1934,8 +1928,8 @@ END
 STRINGTABLE
 BEGIN
     IDS_GOOGLE_SEARCH_URL   "https://www.google.com/search?q=%s"
-    IDS_BING_SEARCH_URL     "https://www.bing.com/search?q=%s"
-    IDS_WIKI_SEARCH_URL     "https://zh.wikipedia.org/wiki/Special:Search?search=%s"
+    IDS_BING_SEARCH_URL     "https://www.baidu.com/s?wd=%s"
+    IDS_WIKI_SEARCH_URL     "https://chat.baidu.com/search?word=%E8%A7%A3%E9%87%8A:%s"
 END
 
 // encoding name string format: 'long descriptive name on Select Encoding dialog' + ';' + 'short name on statusbar'
